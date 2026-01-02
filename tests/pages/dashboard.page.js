@@ -41,5 +41,11 @@ class DashboardPage {
   async wait_for_create_website_link() {
     await this.page.waitForSelector('a.sc-boJDB.WRczQ[href="/v2/workspace/new"]',{state:'visible'})
   }
+  async assert_visibility_of_dashboard_elems(){
+    await expect(this.start_new_site_header).toBeVisible();
+    await expect(this.new_site_instructions).toBeVisible();
+    await expect(this.site_dashboard_header).toBeVisible();
+    await expect(this.site_dashboard_instructions).toBeVisible();
+  }
 }
 module.exports = { DashboardPage };
