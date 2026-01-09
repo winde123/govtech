@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 class WebsiteConfigPage {
     /**
    * @param {import('playwright').Page} page
@@ -12,7 +13,21 @@ class WebsiteConfigPage {
     this.basic_options = page.getByText('HeaderTextButtonRowColumnLinkImageCard');
     this.pages_list_section = page.getByRole('tabpanel', { name: 'Pages' });
     this.create_new_page_btn = page.getByRole('button', { name: 'New' });
-    this.approval_btn = page.getByRole('button', { name: 'Send for approval' })
+    this.approval_btn = page.locator('button.sc-jlZhew.fqpfUA.sc-ivNAKN.dUTSRO')
+    this.remarks_textarea = page.getByTestId('form-textarea')
+    this.remarks_modal_cancel_btn = page.locator('button.sc-gVaSRo.hvJPiH')
+    this.remarks_modal_approval_btn = page.getByTestId('button').nth(2)
+    this.published_label = page.locator('div').filter({ hasText: 'Published' }).nth(5)
+  }
+
+  async check_for_elements_building_blocks_visibility(){
+    await expect(this.building_blocks_header).toBeVisible()
+    await expect(this.pages_header).toBeVisible()
+    await expect(this.sections_options).toBeVisible()
+    await expect(this.basic_options).toBeVisible()
+    await expect(this.building_blocks_header).toBeVisible()
+    await expect(this.building_blocks_header).toBeVisible()
+    
   }
 }
 module.exports = { WebsiteConfigPage };
