@@ -22,6 +22,7 @@ test.beforeEach("Setup", async ({ page }) => {
 });
 
 test.describe("e2e site creation scenarios", () => {
+  test.describe.configure({ mode: "serial" });
   test("User is able validate UI elements in the form", async ({ page }) => {
     const sitecreationform = new SiteCreationForm(page);
     sitecreationform.assert_website_creation_page_visibility();
